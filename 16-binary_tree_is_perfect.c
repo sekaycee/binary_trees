@@ -9,7 +9,7 @@
  * Return: 1 - if the tree is perfect.
  *         0 - otherwise
  */
-int is_perfect(binary_tree_t *root, int d, int level) {
+int is_perfect(const binary_tree_t *root, int d, int level) {
 	/* Check if the tree is empty */
 	if (!root)
 		return (1);
@@ -34,7 +34,7 @@ int is_perfect(binary_tree_t *root, int d, int level) {
  */
 int binary_tree_is_perfect(const binary_tree_t *tree) {
 	int d = 0;
-	binary_tree_t *tmp;
+	const binary_tree_t *tmp;
 
 	/* Evaluate the tree depth */
 	tmp = tree;
