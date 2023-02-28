@@ -2,11 +2,11 @@
 
 /*
  * binary_tree_node - Create a binary tree node
- * @parent: Pointer to the parent node of the to create
- * @value: Value to be put in the new node
+ * @parent: A pointer to the parent node of the to create
+ * @value: The value to be put in the new node
  *
- * Return: Pointer to the new node if success..
- * 	otherwise return NULL
+ * Return: A pointer to the new node - if success.
+ *         NULL - otherwise
  */
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 {
