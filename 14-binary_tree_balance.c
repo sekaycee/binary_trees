@@ -33,7 +33,7 @@ int binary_tree_balance(const binary_tree_t *tree)
 
 	if (tree)
 	{
-		b_factor += binary_tree_height(tree->left); 
+		b_factor += binary_tree_height(tree->left);
 		b_factor -= binary_tree_height(tree->right);
 		return (b_factor);
 	}
