@@ -1,49 +1,50 @@
 #include "binary_trees.h"
 
 /**
- * heap_to_sorted_array - Convert a Binary Max Heap
- * to a sorted array of integers.
- * @heap: A pointer to the root node of the heap to convert.
- * @size: The address to store the size of the array.
+ * tree_size - Measure the sum of heights of a binary tree
+ * @tree: pointer to the root node of the tree to measure the height
  *
- * Return: The pointer to array sorted in descending order - if success
- *         0 - on failure
+ * Return: Height or 0 if tree is NULL
+ */
+size_t tree_size(const binary_tree_t *tree)
+{
+	size_t height_l = 0;
+	size_t height_r = 0;
+
+	if (!tree)
+		return (0);
+
+	if (tree->left)
+		height_l = 1 + tree_size(tree->left);
+
+	if (tree->right)
+		height_r = 1 + tree_size(tree->right);
+
+	return (height_l + height_r);
+}
+
+/**
+ * heap_to_sorted_array - Convert a Binary Max Heap
+ *                        to a sorted array of integers
+ * @heap: pointer to the root node of the heap to convert
+ * @size: address to store the size of the array
+ *
+ * Return: pointer to array sorted in descending order
  **/
 int *heap_to_sorted_array(heap_t *heap, size_t *size)
 {
-	size_t sorted, count = 0, index = 0, front = 0, rear = 0;
-	heap_t *node = heap;
-	heap_t **queue;
+	int i, *a = NULL;
 
-	while (node = node->right)
-		count++;
-
-	sorted = malloc(count * sizeof(size_t));
-	if (!sorted)
-	{
-		*size = 0;
+	if (!heap || !size)
 		return (NULL);
-	}
 
-	queue = malloc(count * sizeof(heap_t *));
-	if (!queue)
-	{
-		free(sorted);
-		*size = 0;
+	*size = tree_size(heap) + 1;
+	a = malloc(sizeof(int) * (*size));
+	if (!a)
 		return (NULL);
-	}
 
-	queue[rear++] = heap;
-	while (front < rear)
-	{
-		node = queue[front++];
-		sorted[index++] = node->n;
-		if (node->left)
-			queue[rear++] = node->left;
-		if (node->right)
-			queue[rear++] = node->right;
-	}
-	free(queue);
-	*size = count;
-	return (sorted);
+	for (i = 0; heap; i++)
+		a[i] = heap_extract(&heap);
+
+	return (a);
 }
