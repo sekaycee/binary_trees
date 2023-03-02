@@ -29,6 +29,8 @@ bst_t *min_value_node(bst_t *node)
  */
 bst_t *bst_remove(bst_t *root, int value)
 {
+	bst_t *tmp;
+
 	/* Return if the tree is empty */
 	if (!root)
 		return (root);
@@ -43,13 +45,13 @@ bst_t *bst_remove(bst_t *root, int value)
 		/* If the node is with only one child or no child */
 		if (!root->left)
 		{
-			bst_t *tmp = root->right;
+			tmp = root->right;
 			free(root);
 			return (tmp);
 		}
 		if (!root->right)
 		{
-			bst_t *tmp = root->left;
+			tmp = root->left;
 			free(root);
 			return (tmp);
 		}

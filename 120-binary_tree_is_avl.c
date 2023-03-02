@@ -10,14 +10,14 @@
  */
 size_t height(const binary_tree_t *tree)
 {
-    size_t left_height, right_height;
+	size_t left_height, right_height;
 
-    if (!tree)
-        return (0);
+	if (!tree)
+		return (0);
 
-    left_height = height(tree->left);
-    right_height = height(tree->right);
-    return (1 + (left_height > right_height ? left_height : right_height));
+	left_height = height(tree->left);
+	right_height = height(tree->right);
+	return (1 + (left_height > right_height ? left_height : right_height));
 }
 
 /**
@@ -31,19 +31,19 @@ size_t height(const binary_tree_t *tree)
  */
 int is_avl(const binary_tree_t *tree, int min, int max)
 {
-    int left_height, right_height;
+	int left_height, right_height;
 
-    if (!tree)
-        return (1);
+	if (!tree)
+		return (1);
 
-    left_height = height(tree->left);
-    right_height = height(tree->right); 
-    if ((tree->n < min || tree->n > max) ||
-	abs(left_height - right_height) > 1)
-        return (0);
+	left_height = height(tree->left);
+	right_height = height(tree->right);
+	if ((tree->n < min || tree->n > max) ||
+		abs(left_height - right_height) > 1)
+		return (0);
 
-    return (is_avl(tree->left, min, tree->n - 1) &&
-            is_avl(tree->right, tree->n + 1, max));
+	return (is_avl(tree->left, min, tree->n - 1) &&
+		is_avl(tree->right, tree->n + 1, max));
 }
 
 /**
@@ -56,6 +56,6 @@ int is_avl(const binary_tree_t *tree, int min, int max)
 int binary_tree_is_avl(const binary_tree_t *tree)
 {
 	if (!tree)
-        	return (1);
+		return (1);
 	return (is_avl(tree, INT_MIN, INT_MAX));
 }

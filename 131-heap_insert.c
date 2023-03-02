@@ -15,7 +15,7 @@ heap_t *heap_insert(heap_t **root, int value)
 	/* Create the new node */
 	new_node = malloc(sizeof(heap_t));
 	if (!new_node)
-		return(NULL);
+		return (NULL);
 
 	new_node->n = value;
 	new_node->left = NULL;

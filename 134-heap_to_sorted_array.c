@@ -26,7 +26,8 @@ int *heap_to_sorted_array(heap_t *heap, size_t *size)
 	}
 
 	queue = malloc(count * sizeof(heap_t *));
-	if (!queue) {
+	if (!queue)
+	{
 		free(sorted);
 		*size = 0;
 		return (NULL);
@@ -35,10 +36,10 @@ int *heap_to_sorted_array(heap_t *heap, size_t *size)
 	queue[rear++] = heap;
 	while (front < rear)
 	{
-		heap_t *node = queue[front++];
+		node = queue[front++];
 		sorted[index++] = node->n;
 		if (node->left)
-	    		queue[rear++] = node->left;
+			queue[rear++] = node->left;
 		if (node->right)
 			queue[rear++] = node->right;
 	}

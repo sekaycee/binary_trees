@@ -13,10 +13,10 @@
 int is_valid_bst(const binary_tree_t *root, int min, int max)
 {
 	if (!root)
-        	return (1);
+		return (1);
 
 	if (root->n <= min || root->n >= max)
-	        return (0);
+		return (0);
 
 	return (is_valid_bst(root->left, min, root->n) &&
 		is_valid_bst(root->right, root->n, max));

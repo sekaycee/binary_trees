@@ -50,4 +50,6 @@ Project completed during **Fullstack Software Engineering** program at **ALX**. 
 | `130-binary_tree_is_heap.c` | Check if a binary tree is a valid Max Binary Heap |
 | `131-heap_insert.c` | Insert a value in Max Binary Heap |
 | `132-array_to_heap.c` | Build a Max Binary Heap tree from an array |
+| `133-heap_extract.c` | Write a function that extracts the root node of a Max Binary Heap |
+| `134-heap_to_sorted_array.c` | Write a function that converts a Binary Max Heap to a sorted array of integers |
 | `135-O` | File with the average time complexities of inserting a value, removing and searching a node on a Binary Heap |

@@ -23,9 +23,9 @@ int heap_extract(heap_t **root)
 	while (node->left || node->right)
 	{
 		if (!node->right || node->left->n >= node->right->n)
-	    		node = node->left;
+			node = node->left;
 		else
-	    		node = node->right;
+			node = node->right;
 	}
 
 	/* Replace the root with the node to remove */
