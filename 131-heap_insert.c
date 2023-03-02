@@ -1,38 +1,57 @@
 #include "binary_trees.h"
 
 /**
- * heap_insert - Insert a value in Max Binary Heap.
- * @root: A double pointer to the root node of the Heap.
- * @value: The value to store in the node to be inserted.
+ * tree_size - Measure the size of a binary tree
+ * @tree: Tree to measure the size of
  *
- * Return: A pointer to the created node - if success
- *         NULL - on failure
+ * Return: Size of the tree
+ *         0 if tree is NULL
+ */
+size_t tree_size(const binary_tree_t *tree)
+{
+	if (!tree)
+		return (0);
+
+	return (tree_size(tree->left) + tree_size(tree->right) + 1);
+}
+
+/**
+ * heap_insert - Insert a value in Max Binary Heap
+ * @root: A double pointer to the root node of the Heap to insert the value
+ * @value: The value to store in the node to be inserted
+ *
+ * Return: A pointer to the created node
+ *         NULL on failure
  */
 heap_t *heap_insert(heap_t **root, int value)
 {
-	heap_t *new_node, *current = *root, *parent = NULL;
+	heap_t *tree, *new, *flip;
+	int size, leaves, sub, bit, level, tmp;
 
-	/* Create the new node */
-	new_node = malloc(sizeof(heap_t));
-	if (!new_node)
+	if (!root)
 		return (NULL);
+	if (!(*root))
+		return (*root = binary_tree_node(NULL, value));
+	tree = *root;
+	size = tree_size(tree);
+	leaves = size;
+	for (level = 0, sub = 1; leaves >= sub; sub *= 2, level++)
+		leaves -= sub;
 
-	new_node->n = value;
-	new_node->left = NULL;
-	new_node->right = NULL;
-	/* Find the position to insert the new node */
-	while (current && new_node->n > current->n)
+	for (bit = 1 << (level - 1); bit != 1; bit >>= 1)
+		tree = leaves & bit ? tree->right : tree->left;
+
+	new = binary_tree_node(tree, value);
+	leaves & 1 ? (tree->right = new) : (tree->left = new);
+
+	flip = new;
+	for (; flip->parent && (flip->n > flip->parent->n); flip = flip->parent)
 	{
-		parent = current;
-		current = current->right;
+		tmp = flip->n;
+		flip->n = flip->parent->n;
+		flip->parent->n = tmp;
+		new = new->parent;
 	}
 
-	/* Insert the new node */
-	new_node->left = current;
-	if (parent)
-		parent->right = new_node;
-	else
-		*root = new_node;
-
-	return (new_node);
+	return (new);
 }
