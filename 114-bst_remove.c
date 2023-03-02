@@ -6,7 +6,8 @@
  *
  * Return: A pointer to the inorder successive node
  */
-bst_t *min_value_node(bst_t *node) {
+bst_t *min_value_node(bst_t *node)
+{
 	bst_t *current = node;
 
 	/* Find the leftmost leaf */
@@ -26,7 +27,8 @@ bst_t *min_value_node(bst_t *node) {
  * Description: If the node to be deleted has two children, it
  *              is replaced with its first in-order successor.
  */
-bst_t *bst_remove(bst_t *root, int value) {
+bst_t *bst_remove(bst_t *root, int value)
+{
 	/* Return if the tree is empty */
 	if (!root)
 		return (root);
