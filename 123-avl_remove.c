@@ -37,21 +37,19 @@ int successor(bst_t *node)
 
 	if (!node)
 		return (0);
-	else
-	{
-		left = successor(node->left);
-		if (left == 0)
-			return (node->n);
-		return (left);
-	}
 
+	left = successor(node->left);
+	if (left == 0)
+		return (node->n);
+
+	return (left);
 }
 /**
- *remove_type - Remove a node depending on its children
- *@root: node to remove
-
- *Return: 0 - if it has no children.
-          Other value - if it has
+ * remove_type - Remove a node depending on its children
+ * @root: node to remove
+ *
+ * Return: 0 - if it has no children.
+ *         Other value - if it has
  */
 int remove_type(bst_t *root)
 {
@@ -66,7 +64,7 @@ int remove_type(bst_t *root)
 		free(root);
 		return (0);
 	}
-	else if ((!root->left && root->right) || (!root->right && root->left))
+	if ((!root->left && root->right) || (!root->right && root->left))
 	{
 		if (!root->left)
 		{
@@ -87,12 +85,9 @@ int remove_type(bst_t *root)
 		free(root);
 		return (0);
 	}
-	else
-	{
-		new_value = successor(root->right);
-		root->n = new_value;
-		return (new_value);
-	}
+	new_value = successor(root->right);
+	root->n = new_value;
+	return (new_value);
 }
 /**
  * bst_remove - Remove a node from a BST tree
@@ -133,6 +128,7 @@ avl_t *avl_remove(avl_t *root, int value)
 
 	if (root_a == NULL)
 		return (NULL);
+
 	bfactor(&root_a);
 	return (root_a);
 }
